@@ -1,19 +1,20 @@
 # README
-
-
 Hey,
+
 This is a VS Code extension which enables you to fetch test cases of any Leetcode problem directly into VS Code, using its url, as txt files.
 It also allows you to test run your program in any of the most common languages like C++, Python, Java and JavaScript on these fetched test cases and compare your outputs with the original output.
 
+![Demo](images/Demo.gif)
 
 ## How to install?
-
 Clone this repository into your local system.
-`git clone https://github.com/YashJainyj2005/CPH-Leetcode-Project.git
-`npm install
+
+`git clone https://github.com/YashJainyj2005/CPH-Leetcode-Project.git`
+
+`npm install`
+
 
 ## How to use?
-
 
 1. Open the Leetcode problem in your browser and copy its url.
 2. Run the extension in VS Code.
@@ -24,8 +25,10 @@ Clone this repository into your local system.
 7. To run these search for command CPH: Run Test Cases from the command pallete.
 8. Results will be shown in the console.
 9. Done
-\!\[Commands\]\(images/Commands.png\)
-\!\[Leetcode url\]\(images/Leetcode_url.png\)
+   
+![Commands](images/Commands.png)
+
+![Leetcode url](images/Leetcode_url.png)
 
 ## Features
 
@@ -62,12 +65,6 @@ Provides execution support for commonly used languages, such as:
 - Python
 - Java
 - JavaScript (using node.js)
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-
 ## Future Scope of Improvements
 
 The user experience can be further enhanced by its GUI Implementation.

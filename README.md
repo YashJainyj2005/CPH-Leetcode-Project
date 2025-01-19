@@ -23,7 +23,7 @@ Clone this repository into your local system.
 5. Paste the problem url and press enter.
 6. The test cases will be locally saved.
 7. To run these search for command CPH: Run Test Cases from the command pallete.
-8. Results will be shown in the console.
+8. Results will be shown in the console panel.
 9. Done
    
 ![Commands](images/Commands.png)

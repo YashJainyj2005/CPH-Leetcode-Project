@@ -4,8 +4,8 @@ const axios = require('axios');
 const fs = require('fs').promises;
 const path = require('path');
 const cheerio = require('cheerio');
-const { formatArrToStr, splitTestCases } = require('./src/utils/formatters');
-const { executeCode, runSingle } = require('./src/utils/codeExec');
+const { formatArrToStr, splitTestCases } = require('./src/utils/convert');
+const { executeCode } = require('./src/utils/runningcode');
 
 // GraphQL query to fetch problem data from LeetCode
 const PROBLEM_QUERY = `

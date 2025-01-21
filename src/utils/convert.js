@@ -30,15 +30,15 @@ function splitTestCases(testcases, linesPerCase){
         .map(line => line.trim())
         .filter(line => line.length > 0);
     
-    const result = [];
+    const resl = [];
     
     for (let i = 0; i < lines.length; i += linesPerCase) {
         const testCase = lines.slice(i, i + linesPerCase);
         if (testCase.length === linesPerCase) {
-            result.push(testCase.join('\n'));
+            resl.push(testCase.join('\n'));
         }
     }  
-    return result;
+    return resl;
 }
 
 module.exports = {

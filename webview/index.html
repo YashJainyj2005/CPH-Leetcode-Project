@@ -5,18 +5,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPH LeetCode</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(56, 55, 55);
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.text {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.fetch {
+    color: white;
+    background-color: blue;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.fetch:hover {
+    background-color: darkblue;
+}
+
+.myfav {
+    margin-top: 20px;
+}
+
+.myfav h2 {
+    margin-bottom: 10px;
+}
+
+.myfav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.myfav li {
+    margin-bottom: 10px;
+}
+
+.myfav a {
+    color: #1e90ff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.myfav a:hover {
+    color: #63b8ff;
+}
+    </style>
 </head>
 
 <body>
-    <div class="text">
-        Please enter the URL of your LeetCode problem to fetch test cases:
-    </div>
-    <input type="text" id="leetcodeUrl" placeholder="Enter URL of LeetCode problem here.."
-        title="URL of LeetCode problem" required />
-    <button type="submit" id="bt" class="fetch">Fetch Test Cases</button>
-    <div class="myfav">
-        <img src="../images/favicon-32x32.png" alt="">
+    <div class="container">
+        <div class="text">
+            Please enter the URL of your LeetCode problem to fetch test cases:
+        </div>
+        <input type="text" id="leetcodeUrl" placeholder="Enter URL of LeetCode problem here.." title="URL of LeetCode problem" required />
+        <button type="submit" id="bt" class="fetch">Fetch Test Cases</button>
+        <div class="myfav">
+            <h2>My Favorite LeetCode Problems</h2>
+            <ul>
+                <li><a href="https://leetcode.com/problems/two-sum/">Two Sum</a></li>
+                <li><a href="https://leetcode.com/problems/add-two-numbers/">Add Two Numbers</a></li>
+                <li><a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">Longest Substring Without Repeating Characters</a></li>
+            </ul>
+        </div>
     </div>
     <script>
         const vscode = acquireVsCodeApi();

@@ -21,6 +21,7 @@ Clone this repository into your local system.
 3. Open the command pallete (Ctrl/Cmd + Shift + P)
 4. Search for the command CPH: Fetch Test Cases and select it.
 5. Paste the problem url and press enter.
+OR to fetch test cases you can also use the new panel created for this extension in the activity bar in VS Code.
 6. The test cases will be locally saved.
 7. To run these search for command CPH: Run Test Cases from the command pallete.
 8. Results will be shown in the console panel.

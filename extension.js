@@ -2,6 +2,7 @@
 const vscode = require('vscode');
 const axios = require('axios');
 const fs = require('fs').promises;
+const fss=require('fs')
 const path = require('path');
 const cheerio = require('cheerio');
 const { formatArrToStr, splitTestCases } = require('./src/utils/convert');
@@ -308,79 +309,9 @@ class CPHView {
     }
 
     getHtmlForWebview(webview) {
-
-        return `<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPH LeetCode</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: rgb(56, 55, 55);
-            font-family: Arial, sans-serif;
-        }
-
-        .text {
-            text-align: center;
-            margin: 10vw 10vh;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .fetch {
-            color: white;
-            background-color: blue;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 2vh;
-            margin-left: 25vw;
-            border-radius: 5px;
-        }
-
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin-top: 2vh;
-            margin-left: 10vw;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="text">
-        Please enter the URL of your LeetCode problem to fetch test cases:
-    </div>
-    <input type="text" id="leetcodeUrl" placeholder="Enter URL of LeetCode problem here.."
-        title="URL of LeetCode problem" required />
-    <button type="submit" id="bt" class="fetch">Fetch Test Cases</button>
-    <script>
-        const vscode = acquireVsCodeApi();
-        const bt = document.getElementById('bt');
-
-        bt.addEventListener('click', (event) => {
-            event.preventDefault();
-            const url = document.getElementById('leetcodeUrl').value;
-            vscode.postMessage({
-                command: 'fetch',
-                url: url
-            });
-        });
-    </script>
-</body>
-
-</html>`
+        const htmlPath = path.join(__dirname, 'webview', 'index.html');
+        const htmlContent = fss.readFileSync(htmlPath, 'utf8');
+        return htmlContent;
     }
 
 }

@@ -97,6 +97,9 @@ function runCode(filePath, language, input) {
             case 'javascript':
                 cmnd = `${LANGUAGE_COMMANDS.javascript} ${filePath}`;
                 break;
+            case 'js':
+                cmnd = `${LANGUAGE_COMMANDS.javascript} ${filePath}`;
+                break;
             default:
             reject(new Error(`Unsupported language: ${language}`));
             return;

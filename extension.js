@@ -95,10 +95,8 @@ async function saveTestCases(workspacePath, problemId, testcases) {
     const testCaseDirectory = path.join(__dirname, 'src', 'testcases', problemId);
 
     try {
-        // Ensure the directory exists
         await fs.mkdir(testCaseDirectory, { recursive: true });
 
-        // Save input test cases
         for (let i = 0; i < testcases.inputs.length; i++) {
             const inputPath = path.join(testCaseDirectory, `input_${i + 1}.txt`);
             const formattedInput = Array.isArray(testcases.inputs[i]) ?
@@ -107,7 +105,6 @@ async function saveTestCases(workspacePath, problemId, testcases) {
             await fs.writeFile(inputPath, formattedInput);
         }
 
-        // Save output test cases
         for (let i = 0; i < testcases.outputs.length; i++) {
             const outputPath = path.join(testCaseDirectory, `output_${i + 1}.txt`);
             await fs.writeFile(outputPath, testcases.outputs[i]);
@@ -265,8 +262,6 @@ function activate(context) {
             vscode.window.showErrorMessage(`Error: ${error.message}`);
         }
     });
-
-    // Add the commands to the extension's subscriptions
     context.subscriptions.push(fetchCommand, runCommand);
 }
 
@@ -284,18 +279,15 @@ class CPHView {
     resolveWebviewView(webviewView) {
         this.webview = webviewView.webview
         console.log("Starting")
-        // Set WebView options here
         webviewView.webview.options = {
-            enableScripts: true, // Enable JavaScript
-            retainContextWhenHidden: true, // Retain WebView state when hidden
+            enableScripts: true,
+            retainContextWhenHidden: true,
             localResourceRoots: [vscode.Uri.joinPath(this.extensionUri, 'webview')],
         };
         console.log("Here")
-        // Provide HTML content for the WebView
         webviewView.webview.html = this.getHtmlForWebview(webviewView.webview);
         console.log("HERE")
 
-        // Handle messages from WebView
         webviewView.webview.onDidReceiveMessage((message) => {
             switch (message.command) {
                 case 'fetch':

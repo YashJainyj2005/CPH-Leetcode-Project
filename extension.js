@@ -139,6 +139,10 @@ async function fetchTestCases(titleSlug) {
         }
 
         const problemData = response.data.data.question;
+        console.log(problemData.questionId)
+        console.log(problemData.content)
+        console.log(problemData.exampleTestcases)
+        console.log(problemData.sampleTestCase)
         return {
             id: problemData.questionId,
             content: problemData.content,
@@ -178,6 +182,12 @@ const getTitleSlug = (url) => {
  */
 function activate(context) {
     console.log('Congratulations, your extension "lyjain" is now active!');
+
+    const mywebview = new CPHView(context.extensionUri)
+    console.log("Heree")
+    context.subscriptions.push(
+        vscode.window.registerWebviewViewProvider('CPHLeetcodePanel', mywebview)
+    );
 
     // Register the "fetch" command to retrieve test cases
     let fetchCommand = vscode.commands.registerCommand('lyjain.fetch', async (problemUrl) => {
@@ -264,6 +274,116 @@ function activate(context) {
  */
 function deactivate() { }
 
+class CPHView {
+    constructor(extensionUri) {
+        this.extensionUri = extensionUri;
+        this.webview = null;
+        console.log("Initialized")
+    }
+    resolveWebviewView(webviewView) {
+        this.webview = webviewView.webview
+        console.log("Starting")
+        // Set WebView options here
+        webviewView.webview.options = {
+            enableScripts: true, // Enable JavaScript
+            retainContextWhenHidden: true, // Retain WebView state when hidden
+            localResourceRoots: [vscode.Uri.joinPath(this.extensionUri, 'webview')],
+        };
+        console.log("Here")
+        // Provide HTML content for the WebView
+        webviewView.webview.html = this.getHtmlForWebview(webviewView.webview);
+        console.log("HERE")
+
+        // Handle messages from WebView
+        webviewView.webview.onDidReceiveMessage((message) => {
+            switch (message.command) {
+                case 'fetch':
+                    vscode.commands.executeCommand("lyjain.fetch", message.url)
+                    break;
+                case 'runTestCases':
+                    vscode.window.showInformationMessage('Running test cases...');
+                    break;
+            }
+        });
+    }
+
+    getHtmlForWebview(webview) {
+
+        return `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPH LeetCode</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgb(56, 55, 55);
+            font-family: Arial, sans-serif;
+        }
+
+        .text {
+            text-align: center;
+            margin: 10vw 10vh;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .fetch {
+            color: white;
+            background-color: blue;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 2vh;
+            margin-left: 25vw;
+            border-radius: 5px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 2vh;
+            margin-left: 10vw;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text">
+        Please enter the URL of your LeetCode problem to fetch test cases:
+    </div>
+    <input type="text" id="leetcodeUrl" placeholder="Enter URL of LeetCode problem here.."
+        title="URL of LeetCode problem" required />
+    <button type="submit" id="bt" class="fetch">Fetch Test Cases</button>
+    <script>
+        const vscode = acquireVsCodeApi();
+        const bt = document.getElementById('bt');
+
+        bt.addEventListener('click', (event) => {
+            event.preventDefault();
+            const url = document.getElementById('leetcodeUrl').value;
+            vscode.postMessage({
+                command: 'fetch',
+                url: url
+            });
+        });
+    </script>
+</body>
+
+</html>`
+    }
+
+}
 module.exports = {
     activate,
     deactivate

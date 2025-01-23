@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPH LeetCode</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="text">
+        Please enter the URL of your LeetCode problem to fetch test cases:
+    </div>
+    <input type="text" id="leetcodeUrl" placeholder="Enter URL of LeetCode problem here.."
+        title="URL of LeetCode problem" required />
+    <button type="submit" id="bt" class="fetch">Fetch Test Cases</button>
+    <div class="myfav">
+        <img src="../images/favicon-32x32.png" alt="">
+    </div>
+    <script>
+        const vscode = acquireVsCodeApi();
+        const bt = document.getElementById('bt');
+
+        bt.addEventListener('click', (event) => {
+            event.preventDefault();
+            const url = document.getElementById('leetcodeUrl').value;
+            vscode.postMessage({
+                command: 'fetch',
+                url: url
+            });
+        });
+    </script>
+</body>
+
+</html>

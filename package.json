@@ -14,6 +14,24 @@
   ],
   "main": "./extension.js",
   "contributes": {
+    "viewsContainers": {
+    "activitybar": [
+      {
+        "id": "CPHLeetCode",
+        "title": "CPH LeetCode",
+        "icon": "images/Commands.png"
+      }
+    ]
+  },
+  "views": {
+    "CPHLeetCode": [
+      {
+        "type": "webview",
+        "id": "CPHLeetcodePanel",
+        "name": "CPH LeetCode Panel"
+      }
+    ]
+  },
     "commands": [
       {
         "command": "lyjain.fetch",

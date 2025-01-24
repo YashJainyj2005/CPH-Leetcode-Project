@@ -24,7 +24,7 @@ void solve(){
         if(csum<0){csum=0;}
         if(csum>maxsum){maxsum=csum;}
     }
-    cout<<maxsum<<"\n";
+    cout<<maxsum<<"\n"; 
 }
 
 int main(){
